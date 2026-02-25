@@ -7,6 +7,10 @@ description: Design pattern implementation in Phaser 3 with JavaScript, focused 
 
 Implement design patterns with a focus on real gameplay, not abstract examples.
 
+## When to use
+
+Use this skill when the user needs to apply, refactor, review, or explain design patterns in Phaser 3 (JavaScript), especially for scene architecture, entities, input systems, physics interactions, and performance-sensitive gameplay code.
+
 ## Workflow
 
 1. Identify a real game problem (entity creation, system coordination, behavior variation, etc).
