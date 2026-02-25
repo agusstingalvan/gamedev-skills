@@ -1,4 +1,4 @@
-# Snippets Phaser + JavaScript (22 patrones)
+# Phaser + JavaScript Snippets (22 patterns)
 
 ## 1. Factory Method
 
@@ -7,7 +7,7 @@ class EnemyFactory {
   create(scene, type, x, y) {
     if (type === 'slime') return new Slime(scene, x, y);
     if (type === 'bat') return new Bat(scene, x, y);
-    throw new Error(`Tipo no soportado: ${type}`);
+    throw new Error(`Unsupported type: ${type}`);
   }
 }
 ```
@@ -88,7 +88,7 @@ class DamageBoost {
 ```js
 class GameServices {
   constructor(save, audio, ui) { this.save = save; this.audio = audio; this.ui = ui; }
-  onWin(score) { this.save.storeScore(score); this.audio.playSfx('win'); this.ui.showToast('Nivel completado'); }
+  onWin(score) { this.save.storeScore(score); this.audio.playSfx('win'); this.ui.showToast('Level completed'); }
 }
 ```
 
@@ -190,7 +190,7 @@ class EnemyStateMachine {
 }
 ```
 
-Implementacion completa con `EnemyExample`, `IdleState`, `MoveState` y `ActionState` en `references/state-machine-pattern-phaser.md`.
+Full implementation with `EnemyExample`, `IdleState`, `MoveState`, and `ActionState` in `references/state-machine-pattern-phaser.md`.
 
 ## 20. Strategy
 
@@ -204,8 +204,8 @@ enemy.moveStrategy = new ZigZagMove();
 ```js
 class BaseLevelScene extends Phaser.Scene {
   create() { this.createMap(); this.createPlayer(); this.createEnemies(); }
-  createMap() { throw new Error('Implementar createMap'); }
-  createEnemies() { throw new Error('Implementar createEnemies'); }
+  createMap() { throw new Error('Implement createMap'); }
+  createEnemies() { throw new Error('Implement createEnemies'); }
 }
 ```
 
@@ -216,7 +216,7 @@ class DamageVisitor { visitEnemy(enemy) { enemy.takeDamage(10); } }
 class Enemy { accept(visitor) { visitor.visitEnemy(this); } }
 ```
 
-## Limpieza de eventos
+## Event Cleanup
 
 ```js
 this.events.once('shutdown', () => {

@@ -1,38 +1,38 @@
-# Mapeo de patrones a Phaser
+# Pattern Mapping to Phaser
 
-## Creacionales
+## Creational
 
-- Factory Method: crear enemigos/proyectiles por tipo sin `if/switch` dispersos.
-- Abstract Factory: familias de contenido por biome/tema (hielo, bosque, lava).
-- Builder: construir niveles por pasos (tilemap, layers, colision, spawn).
-- Prototype: clonar configuraciones base de enemigos o armas.
-- Singleton: servicios globales (audio, configuracion, telemetria) con acceso controlado.
+- Factory Method: create enemies/projectiles by type without scattered `if/switch` statements.
+- Abstract Factory: content families by biome/theme (ice, forest, lava).
+- Builder: construct levels step by step (tilemap, layers, collision, spawn).
+- Prototype: clone base configurations for enemies or weapons.
+- Singleton: global services (audio, configuration, telemetry) with controlled access.
 
-## Estructurales
+## Structural
 
-- Adapter: adaptar plugins o SDKs externos al contrato interno del juego.
-- Bridge: separar logica de alto nivel (arma) de implementacion (hitscan/proyectil).
-- Composite: manejar HUD o arboles de nodos con interfaz uniforme.
-- Decorator: agregar buffs/debuffs/efectos sin tocar clase base.
-- Facade: API unica para subsistemas (save, audio, UI feedback, analytics).
-- Flyweight: compartir estado intrinseco en objetos masivos + object pooling.
-- Proxy: cache, lazy load o control de acceso a servicios remotos.
+- Adapter: adapt external plugins or SDKs to the game's internal contract.
+- Bridge: separate high-level logic (weapon) from implementation (hitscan/projectile).
+- Composite: manage HUD or node trees with a uniform interface.
+- Decorator: add buffs/debuffs/effects without touching the base class.
+- Facade: single API for subsystems (save, audio, UI feedback, analytics).
+- Flyweight: share intrinsic state in massive objects + object pooling.
+- Proxy: cache, lazy load, or access control for remote services.
 
-## Comportamiento
+## Behavioral
 
-- Chain of Responsibility: pipeline de input o validaciones.
-- Command: encapsular acciones del jugador para replay/undo/rebind.
-- Iterator: recorridos especializados sobre colecciones activas.
-- Mediator: coordinar componentes sin dependencia directa entre ellos.
-- Memento: checkpoints y rollback de estado.
-- Observer: eventos de gameplay desacoplados (`this.events`, EventEmitter).
-- State: IA o control con estados explicitos (Idle, Patrol, Chase, Attack).
-- Strategy: intercambiar algoritmos en runtime (movimiento, targeting, disparo).
-- Template Method: flujo base de escena con pasos sobreescribibles.
-- Visitor: operaciones nuevas sobre jerarquias estables de entidades.
+- Chain of Responsibility: input or validation pipeline.
+- Command: encapsulate player actions for replay/undo/rebind.
+- Iterator: specialized traversals over active collections.
+- Mediator: coordinate components without direct dependencies.
+- Memento: checkpoints and state rollback.
+- Observer: decoupled gameplay events (`this.events`, EventEmitter).
+- State: AI or control with explicit states (Idle, Patrol, Chase, Attack).
+- Strategy: swap algorithms at runtime (movement, targeting, shooting).
+- Template Method: base scene flow with overridable steps.
+- Visitor: new operations over stable entity hierarchies.
 
-## Heuristica de eleccion
+## Selection Heuristic
 
-- Si cambia **que se crea**, usar patron creacional.
-- Si cambia **como se conectan piezas**, usar patron estructural.
-- Si cambia **como actuan en runtime**, usar patron de comportamiento.
+- If **what gets created** changes, use a creational pattern.
+- If **how pieces connect** changes, use a structural pattern.
+- If **how things behave at runtime** changes, use a behavioral pattern.

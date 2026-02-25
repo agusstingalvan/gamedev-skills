@@ -1,24 +1,24 @@
 # EnemyExample - State Machine Pattern (Phaser 3 + JavaScript)
 
-Implementacion completa del patron State Machine adaptada a Phaser.
+Complete implementation of the State Machine pattern adapted to Phaser.
 
-## Configuracion
+## Configuration
 
-- Clase principal: `EnemyExample`
-- Patron: State + State Machine
-- Motor: Phaser 3 (JavaScript)
-- Incluye controlador/contexto: si
-- Estados: `Idle`, `Move`, `Action`
-- Callbacks de estado:
-  - `onSensorOverlap(target)` (equivalente a `OnTriggerEnter`)
-  - `onCustomEvent(eventData)` (equivalente a `MetodoCustom`)
+- Main class: `EnemyExample`
+- Pattern: State + State Machine
+- Engine: Phaser 3 (JavaScript)
+- Includes controller/context: yes
+- States: `Idle`, `Move`, `Action`
+- State callbacks:
+  - `onSensorOverlap(target)` (equivalent to `OnTriggerEnter`)
+  - `onCustomEvent(eventData)` (equivalent to `CustomMethod`)
 
-## Arquitectura
+## Architecture
 
-- `EnemyExampleState`: contrato base para todos los estados.
-- `EnemyExampleStateMachine`: mantiene estado actual y transiciones.
-- `EnemyExample`: contexto del enemigo + puente con Phaser (update, overlap, eventos).
-- `EnemyExampleIdleState`, `EnemyExampleMoveState`, `EnemyExampleActionState`: estados concretos.
+- `EnemyExampleState`: base contract for all states.
+- `EnemyExampleStateMachine`: keeps the current state and transitions.
+- `EnemyExample`: enemy context + Phaser bridge (update, overlap, events).
+- `EnemyExampleIdleState`, `EnemyExampleMoveState`, `EnemyExampleActionState`: concrete states.
 
 ---
 
@@ -79,7 +79,7 @@ export class EnemyExampleStateMachine {
 }
 ```
 
-## `EnemyExample.js` (Contexto)
+## `EnemyExample.js` (Context)
 
 ```js
 import { EnemyExampleStateMachine } from './EnemyExampleStateMachine.js';
@@ -114,8 +114,8 @@ export class EnemyExample extends Phaser.Physics.Arcade.Sprite {
 
     this.stateMachine.initialize(this.idleState);
 
-    // Ejemplo de callback equivalente a OnTriggerEnter:
-    // playerGroup debe existir en la escena.
+    // Callback example equivalent to OnTriggerEnter:
+    // playerGroup must exist in the scene.
     if (scene.playerGroup) {
       scene.physics.add.overlap(this, scene.playerGroup, (_enemy, player) => {
         this.onSensorOverlap(player);
@@ -288,7 +288,7 @@ export class EnemyExampleActionState extends EnemyExampleState {
 
 ---
 
-## Uso rapido en una Scene Phaser
+## Quick Use in a Phaser Scene
 
 ```js
 import { EnemyExample } from './EnemyExample.js';
@@ -312,17 +312,17 @@ class GameScene extends Phaser.Scene {
 }
 ```
 
-## Flujo de transicion
+## Transition Flow
 
-1. Llamar `stateMachine.transitionTo(nextState)`.
-2. Ejecutar `currentState.exit(ctx)`.
-3. Actualizar `currentState`.
-4. Ejecutar `nextState.enter(ctx)`.
-5. En cada frame, ejecutar `currentState.update(ctx, time, delta)`.
+1. Call `stateMachine.transitionTo(nextState)`.
+2. Execute `currentState.exit(ctx)`.
+3. Update `currentState`.
+4. Execute `nextState.enter(ctx)`.
+5. On each frame, execute `currentState.update(ctx, time, delta)`.
 
-## Notas practicas para Phaser
+## Practical Notes for Phaser
 
-- Usar `preUpdate(time, delta)` en sprites personalizados para conectar la state machine al loop.
-- En callbacks de `overlap/collider`, delegar a `stateMachine.onSensorOverlap(...)`.
-- Mantener una sola transicion por frame para evitar estados inconsistentes.
-- Si un estado se suscribe a eventos globales, limpiar en `exit()`.
+- Use `preUpdate(time, delta)` in custom sprites to connect the state machine to the loop.
+- In `overlap/collider` callbacks, delegate to `stateMachine.onSensorOverlap(...)`.
+- Keep only one transition per frame to avoid inconsistent states.
+- If a state subscribes to global events, clean up in `exit()`.
